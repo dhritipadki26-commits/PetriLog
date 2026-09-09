@@ -1,66 +1,1751 @@
-<!doctype html>
+```html
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PetriLog – A Digital Culture Observation Tracker</title>
-    <!-- Chart.js for the colony growth graph -->
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Makes the website responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PetriLog | Digital Culture Observation Tracker</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Your CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js for the growth graph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  </head>
-  <body>
+</head>
+
+
+<body>
+
+    <!-- ======================================================
+         MAIN APPLICATION
+         ====================================================== -->
+
     <div id="app">
-      <!-- NAVIGATION BAR -->
-      <nav class="navbar">
-        <div class="nav-container">
-          <a class="nav-logo" href="#" data-nav="home">
-            <span class="nav-logo-icon">🧫</span>
-            <span class="nav-logo-text">PetriLog</span>
-          </a>
-          <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
-          </button>
-          <ul class="nav-links" id="navLinks">
-            <li><a href="#" data-nav="dashboard" class="nav-link active">Dashboard</a></li>
-            <li><a href="#" data-nav="addCulture" class="nav-link">Add Culture</a></li>
-            <li><a href="#" data-nav="observations" class="nav-link">Observations</a></li>
-            <li><a href="#" data-nav="about" class="nav-link">About</a></li>
-          </ul>
-        </div>
-      </nav>
 
-      <!-- MAIN CONTENT AREA -->
-      <main class="main-content" id="mainContent">
-        <!-- All views are rendered here by script.js -->
-      </main>
 
-      <!-- FOOTER -->
-      <footer class="footer">
-        <p class="footer-text">
-          🧫 PetriLog &mdash; A student observation and documentation tool.
-        </p>
-        <p class="footer-disclaimer">
-          PetriLog is a student observation and documentation tool. It does not provide automated microorganism identification.
-        </p>
-      </footer>
+        <!-- ==================================================
+             NAVIGATION BAR
+             ================================================== -->
+
+        <nav class="navbar">
+
+            <div class="nav-container">
+
+                <!-- Logo -->
+
+                <a href="#" class="nav-logo" data-nav="dashboard">
+
+                    <span class="nav-logo-icon">🧫</span>
+
+                    <span class="nav-logo-text">PetriLog</span>
+
+                </a>
+
+
+                <!-- Mobile Menu Button -->
+
+                <button
+                    class="nav-toggle"
+                    id="navToggle"
+                    aria-label="Toggle navigation">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+
+                <!-- Navigation Links -->
+
+                <ul class="nav-links" id="navLinks">
+
+                    <li>
+                        <a href="#" data-nav="dashboard" class="nav-link active">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" data-nav="addCulture" class="nav-link">
+                            Add Culture
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" data-nav="observations" class="nav-link">
+                            Observations
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" data-nav="about" class="nav-link">
+                            About
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+
+        <!-- ==================================================
+             MAIN CONTENT
+             ================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ==============================================
+                 HERO SECTION
+                 ============================================== -->
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <!-- Petri Dish Visual -->
+
+                    <div class="petri-dish"></div>
+
+
+                    <h1>🧫 PetriLog</h1>
+
+
+                    <p class="hero-subtitle">
+                        A Digital Culture Observation Tracker
+                    </p>
+
+
+                    <p class="hero-desc">
+
+                        Document, organize, and track microbiology culture
+                        observations over time with a simple digital system.
+
+                    </p>
+
+
+                    <button
+                        class="btn btn-primary btn-lg"
+                        id="createCultureBtn">
+
+                        + Create New Culture
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 DASHBOARD STATISTICS
+                 ============================================== -->
+
+            <section class="dashboard-section">
+
+
+                <div class="section-header">
+
+                    <h2>
+                        📊 Culture Dashboard
+                    </h2>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+
+                    <!-- Total Cultures -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            🧫
+                        </div>
+
+                        <div class="stat-value" id="totalCultures">
+                            4
+                        </div>
+
+                        <div class="stat-label">
+                            Total Cultures
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Total Observations -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            📸
+                        </div>
+
+                        <div class="stat-value" id="totalObservations">
+                            12
+                        </div>
+
+                        <div class="stat-label">
+                            Total Observations
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Active Cultures -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            🟢
+                        </div>
+
+                        <div class="stat-value" id="activeCultures">
+                            3
+                        </div>
+
+                        <div class="stat-label">
+                            Active Cultures
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Completed Cultures -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            ✅
+                        </div>
+
+                        <div class="stat-value" id="completedCultures">
+                            1
+                        </div>
+
+                        <div class="stat-label">
+                            Completed Cultures
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 SEARCH AND FILTER
+                 ============================================== -->
+
+            <section class="culture-section">
+
+
+                <div class="section-header">
+
+                    <h2>
+                        🗂️ Recent Cultures
+                    </h2>
+
+
+                    <button
+                        class="btn btn-primary"
+                        id="addCultureButton">
+
+                        + Add Culture
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Search Bar -->
+
+                <div class="toolbar">
+
+
+                    <div class="search-box">
+
+                        <input
+                            type="text"
+                            id="cultureSearch"
+                            placeholder="Search by Culture ID or Sample Name">
+
+                    </div>
+
+
+
+                    <!-- Filter Buttons -->
+
+                    <div class="filter-group">
+
+                        <button
+                            class="filter-btn active"
+                            data-filter="all">
+
+                            All
+
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="active">
+
+                            Active
+
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="completed">
+
+                            Completed
+
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Culture Cards -->
+
+                <div class="culture-grid" id="cultureGrid">
+
+
+                    <!-- CULTURE 1 -->
+
+                    <div class="culture-card">
+
+
+                        <div class="culture-card-header">
+
+                            <span class="culture-card-id">
+                                CULT-001
+                            </span>
+
+
+                            <span class="badge badge-active">
+
+                                <span class="badge-dot"></span>
+
+                                Active
+
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="culture-card-body">
+
+                            <h3>
+                                Sample A
+                            </h3>
+
+
+                            <div class="culture-meta">
+
+
+                                <div class="culture-meta-row">
+
+                                    <span class="culture-meta-label">
+                                        🧪 Medium
+                                    </span>
+
+                                    <span class="culture-meta-value">
+                                        Nutrient Agar
+                                    </span>
+
+                                </div>
+
+
+
+                                <div class="culture-meta-row">
+
+                                    <span class="culture-meta-label">
+                                        ⏱ Last Observation
+                                    </span>
+
+                                    <span class="culture-meta-value">
+                                        48 Hours
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="culture-card-footer">
+
+                            <button class="btn btn-primary btn-sm">
+                                View Details
+                            </button>
+
+
+                            <button class="btn btn-ghost btn-sm">
+                                Delete
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- CULTURE 2 -->
+
+                    <div class="culture-card">
+
+
+                        <div class="culture-card-header">
+
+                            <span class="culture-card-id">
+                                CULT-002
+                            </span>
+
+
+                            <span class="badge badge-active">
+
+                                <span class="badge-dot"></span>
+
+                                Active
+
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="culture-card-body">
+
+                            <h3>
+                                Sample B
+                            </h3>
+
+
+                            <div class="culture-meta">
+
+
+                                <div class="culture-meta-row">
+
+                                    <span class="culture-meta-label">
+                                        🧪 Medium
+                                    </span>
+
+                                    <span class="culture-meta-value">
+                                        Blood Agar
+                                    </span>
+
+                                </div>
+
+
+
+                                <div class="culture-meta-row">
+
+                                    <span class="culture-meta-label">
+                                        ⏱ Last Observation
+                                    </span>
+
+                                    <span class="culture-meta-value">
+                                        24 Hours
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="culture-card-footer">
+
+                            <button class="btn btn-primary btn-sm">
+                                View Details
+                            </button>
+
+
+                            <button class="btn btn-ghost btn-sm">
+                                Delete
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- CULTURE 3 -->
+
+                    <div class="culture-card">
+
+
+                        <div class="culture-card-header">
+
+                            <span class="culture-card-id">
+                                CULT-003
+                            </span>
+
+
+                            <span class="badge badge-completed">
+
+                                <span class="badge-dot"></span>
+
+                                Completed
+
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="culture-card-body">
+
+                            <h3>
+                                Sample C
+                            </h3>
+
+
+                            <div class="culture-meta">
+
+
+                                <div class="culture-meta-row">
+
+                                    <span class="culture-meta-label">
+                                        🧪 Medium
+                                    </span>
+
+                                    <span class="culture-meta-value">
+                                        MacConkey Agar
+                                    </span>
+
+                                </div>
+
+
+
+                                <div class="culture-meta-row">
+
+                                    <span class="culture-meta-label">
+                                        ⏱ Last Observation
+                                    </span>
+
+                                    <span class="culture-meta-value">
+                                        72 Hours
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="culture-card-footer">
+
+                            <button class="btn btn-primary btn-sm">
+                                View Details
+                            </button>
+
+
+                            <button class="btn btn-ghost btn-sm">
+                                Delete
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 ADD CULTURE FORM
+                 ============================================== -->
+
+            <section
+                class="card form-card"
+                id="addCultureSection">
+
+
+                <div class="section-header">
+
+                    <h2>
+                        🧪 Create New Culture Record
+                    </h2>
+
+                </div>
+
+
+
+                <form id="cultureForm">
+
+
+                    <!-- Culture ID -->
+
+                    <div class="form-group">
+
+                        <label for="cultureId">
+
+                            Culture ID
+
+                            <span class="req">*</span>
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="cultureId"
+                            placeholder="Example: CULT-004"
+                            required>
+
+
+                        <p class="form-hint">
+
+                            Enter a unique identification code.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Sample Name -->
+
+                    <div class="form-group">
+
+                        <label for="sampleName">
+
+                            Sample Name
+
+                            <span class="req">*</span>
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="sampleName"
+                            placeholder="Example: Sample A"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Date Started -->
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="startDate">
+
+                                Date and Time Started
+
+                            </label>
+
+
+                            <input
+                                type="datetime-local"
+                                id="startDate"
+                                required>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="medium">
+
+                                Culture Medium
+
+                            </label>
+
+
+                            <select id="medium">
+
+                                <option value="">
+                                    Select Medium
+                                </option>
+
+                                <option>
+                                    Nutrient Agar
+                                </option>
+
+                                <option>
+                                    Blood Agar
+                                </option>
+
+                                <option>
+                                    MacConkey Agar
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Notes -->
+
+                    <div class="form-group">
+
+                        <label for="cultureNotes">
+
+                            Initial Notes
+
+                        </label>
+
+
+                        <textarea
+                            id="cultureNotes"
+                            placeholder="Example: Visible colonies observed.">
+
+                        </textarea>
+
+                    </div>
+
+
+
+                    <!-- Image Upload -->
+
+                    <div class="form-group">
+
+                        <label>
+
+                            📷 Upload Culture Image
+
+                        </label>
+
+
+                        <div
+                            class="upload-area"
+                            id="uploadArea">
+
+
+                            <div class="upload-icon">
+
+                                📷
+
+                            </div>
+
+
+                            <p class="upload-text">
+
+                                Click to upload a culture image
+
+                            </p>
+
+
+                            <input
+                                type="file"
+                                id="cultureImage"
+                                accept="image/*"
+                                hidden>
+
+                        </div>
+
+
+
+                        <!-- Image Preview -->
+
+                        <div
+                            class="image-preview"
+                            id="imagePreview"
+                            style="display: none;">
+
+                            <img
+                                id="previewImage"
+                                src=""
+                                alt="Culture Preview">
+
+
+                            <button
+                                type="button"
+                                class="remove-preview"
+                                id="removeImage">
+
+                                ✕
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Buttons -->
+
+                    <div class="form-actions">
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+
+                            💾 Save Culture
+
+                        </button>
+
+
+                        <button
+                            type="reset"
+                            class="btn btn-secondary">
+
+                            Clear Form
+
+                        </button>
+
+
+                    </div>
+
+
+                </form>
+
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 OBSERVATION SECTION
+                 ============================================== -->
+
+            <section class="card" id="observationSection">
+
+
+                <div class="section-header">
+
+                    <h2>
+                        📸 Add New Observation
+                    </h2>
+
+                </div>
+
+
+
+                <form id="observationForm">
+
+
+                    <!-- Select Culture -->
+
+                    <div class="form-group">
+
+                        <label for="observationCulture">
+
+                            Select Culture
+
+                        </label>
+
+
+                        <select id="observationCulture">
+
+                            <option>
+                                CULT-001 — Sample A
+                            </option>
+
+                            <option>
+                                CULT-002 — Sample B
+                            </option>
+
+                            <option>
+                                CULT-003 — Sample C
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Date and Colony Count -->
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="observationDate">
+
+                                Observation Date & Time
+
+                            </label>
+
+
+                            <input
+                                type="datetime-local"
+                                id="observationDate">
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label for="colonyCount">
+
+                                Approximate Colony Count
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="colonyCount"
+                                placeholder="Example: 35">
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Appearance -->
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="appearance">
+
+                                Appearance
+
+                            </label>
+
+
+                            <select id="appearance">
+
+                                <option>
+                                    Circular
+                                </option>
+
+                                <option>
+                                    Irregular
+                                </option>
+
+                                <option>
+                                    Mixed
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Color -->
+
+                        <div class="form-group">
+
+                            <label for="color">
+
+                                Color
+
+                            </label>
+
+
+                            <select id="color">
+
+                                <option>
+                                    White
+                                </option>
+
+                                <option>
+                                    Cream
+                                </option>
+
+                                <option>
+                                    Yellow
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Shape -->
+
+                    <div class="form-group">
+
+                        <label for="shape">
+
+                            Shape
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="shape"
+                            placeholder="Example: Circular">
+
+                    </div>
+
+
+
+                    <!-- Texture -->
+
+                    <div class="form-group">
+
+                        <label for="texture">
+
+                            Texture
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="texture"
+                            placeholder="Example: Smooth">
+
+                    </div>
+
+
+
+                    <!-- Observation Notes -->
+
+                    <div class="form-group">
+
+                        <label for="observationNotes">
+
+                            Observation Notes
+
+                        </label>
+
+
+                        <textarea
+                            id="observationNotes"
+                            placeholder="Example: More colonies visible compared with the previous observation.">
+
+                        </textarea>
+
+                    </div>
+
+
+
+                    <!-- Save Observation -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-accent">
+
+                        + Save Observation
+
+                    </button>
+
+
+                </form>
+
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 OBSERVATION TIMELINE
+                 ============================================== -->
+
+            <section class="timeline-section">
+
+
+                <div class="section-header">
+
+                    <h2>
+                        ⏱️ Observation Timeline
+                    </h2>
+
+                </div>
+
+
+                <div class="timeline">
+
+
+                    <!-- START -->
+
+                    <div class="timeline-item">
+
+
+                        <div class="timeline-dot start">
+
+                            🧫
+
+                        </div>
+
+
+                        <div class="timeline-card">
+
+
+                            <div class="timeline-card-header">
+
+                                <div class="timeline-card-title">
+
+                                    START
+
+                                </div>
+
+
+                                <span class="timeline-elapsed">
+
+                                    Day 0
+
+                                </span>
+
+                            </div>
+
+
+
+                            <div class="timeline-card-body">
+
+
+                                <div class="timeline-no-img">
+
+                                    🧫
+
+                                </div>
+
+
+                                <div class="timeline-info">
+
+
+                                    <div class="timeline-info-row">
+
+                                        <span class="timeline-info-label">
+
+                                            Culture
+
+                                        </span>
+
+
+                                        <span class="timeline-info-value">
+
+                                            CULT-001
+
+                                        </span>
+
+                                    </div>
+
+
+
+                                    <p class="timeline-notes">
+
+                                        Initial culture record created.
+
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- OBSERVATION 1 -->
+
+                    <div class="timeline-item">
+
+
+                        <div class="timeline-dot">
+
+                            📸
+
+                        </div>
+
+
+                        <div class="timeline-card">
+
+
+                            <div class="timeline-card-header">
+
+                                <div class="timeline-card-title">
+
+                                    Observation 1
+
+                                </div>
+
+
+                                <span class="timeline-elapsed">
+
+                                    24 Hours
+
+                                </span>
+
+                            </div>
+
+
+
+                            <div class="timeline-card-body">
+
+
+                                <div class="timeline-no-img">
+
+                                    📷
+
+                                </div>
+
+
+                                <div class="timeline-info">
+
+
+                                    <div class="timeline-info-row">
+
+                                        <span class="timeline-info-label">
+
+                                            Colonies
+
+                                        </span>
+
+
+                                        <span class="timeline-info-value">
+
+                                            12
+
+                                        </span>
+
+                                    </div>
+
+
+
+                                    <div class="timeline-info-row">
+
+                                        <span class="timeline-info-label">
+
+                                            Appearance
+
+                                        </span>
+
+
+                                        <span class="timeline-info-value">
+
+                                            Circular
+
+                                        </span>
+
+                                    </div>
+
+
+
+                                    <p class="timeline-notes">
+
+                                        Initial colonies are visible.
+
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- OBSERVATION 2 -->
+
+                    <div class="timeline-item">
+
+
+                        <div class="timeline-dot">
+
+                            📸
+
+                        </div>
+
+
+                        <div class="timeline-card">
+
+
+                            <div class="timeline-card-header">
+
+                                <div class="timeline-card-title">
+
+                                    Observation 2
+
+                                </div>
+
+
+                                <span class="timeline-elapsed">
+
+                                    48 Hours
+
+                                </span>
+
+                            </div>
+
+
+
+                            <div class="timeline-card-body">
+
+
+                                <div class="timeline-no-img">
+
+                                    🧫
+
+                                </div>
+
+
+                                <div class="timeline-info">
+
+
+                                    <div class="timeline-info-row">
+
+                                        <span class="timeline-info-label">
+
+                                            Colonies
+
+                                        </span>
+
+
+                                        <span class="timeline-info-value">
+
+                                            28
+
+                                        </span>
+
+                                    </div>
+
+
+
+                                    <div class="timeline-info-row">
+
+                                        <span class="timeline-info-label">
+
+                                            Color
+
+                                        </span>
+
+
+                                        <span class="timeline-info-value">
+
+                                            Cream
+
+                                        </span>
+
+                                    </div>
+
+
+
+                                    <p class="timeline-notes">
+
+                                        More colonies are visible compared with
+                                        the previous observation.
+
+                                    </p>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 IMAGE COMPARISON
+                 ============================================== -->
+
+            <section class="comparison-section">
+
+
+                <div class="section-header">
+
+                    <h2>
+                        📷 Culture Image Comparison
+                    </h2>
+
+                </div>
+
+
+                <div class="comparison-grid">
+
+
+                    <div class="comparison-item">
+
+                        <div class="no-img">
+
+                            🧫
+
+                        </div>
+
+                        <div class="comparison-label">
+
+                            Start
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="comparison-item">
+
+                        <div class="no-img">
+
+                            📸
+
+                        </div>
+
+                        <div class="comparison-label">
+
+                            24 Hours
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="comparison-item">
+
+                        <div class="no-img">
+
+                            📸
+
+                        </div>
+
+                        <div class="comparison-label">
+
+                            48 Hours
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="comparison-item">
+
+                        <div class="no-img">
+
+                            📸
+
+                        </div>
+
+                        <div class="comparison-label">
+
+                            72 Hours
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 COLONY GROWTH GRAPH
+                 ============================================== -->
+
+            <section class="card graph-card">
+
+
+                <div class="section-header">
+
+                    <h2>
+                        📈 Colony Growth Graph
+                    </h2>
+
+                </div>
+
+
+                <div class="graph-container">
+
+                    <canvas id="growthChart"></canvas>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==============================================
+                 OBSERVATION INSIGHTS
+                 ============================================== -->
+
+            <section class="insights-section">
+
+
+                <div class="section-header">
+
+                    <h2>
+                        ⭐ Observation Insights
+                    </h2>
+
+                </div>
+
+
+                <div class="insights-grid">
+
+
+                    <div class="insight-card">
+
+                        <div class="insight-icon">
+
+                            📈
+
+                        </div>
+
+                        <p class="insight-text">
+
+                            Colony count increased compared with the
+                            previous observation.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="insight-card">
+
+                        <div class="insight-icon">
+
+                            🧫
+
+                        </div>
+
+                        <p class="insight-text">
+
+                            Highest recorded colony count: 47.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="insight-card">
+
+                        <div class="insight-icon">
+
+                            ⏱️
+
+                        </div>
+
+                        <p class="insight-text">
+
+                            Latest observation was recorded after
+                            72 hours.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- ==================================================
+             FOOTER
+             ================================================== -->
+
+        <footer class="footer">
+
+
+            <p class="footer-text">
+
+                🧫 PetriLog — A Digital Culture Observation Tracker
+
+            </p>
+
+
+            <p class="footer-disclaimer">
+
+                PetriLog is a student observation and documentation tool.
+                It does not provide automated microorganism identification.
+
+            </p>
+
+
+        </footer>
+
+
     </div>
 
-    <!-- CONFIRMATION MODAL -->
-    <div class="modal-overlay" id="confirmModal">
-      <div class="modal-card">
-        <p class="modal-icon">⚠️</p>
-        <p class="modal-message" id="confirmMessage">Are you sure?</p>
-        <div class="modal-actions">
-          <button class="btn btn-secondary" id="confirmCancel">Cancel</button>
-          <button class="btn btn-danger" id="confirmOk">Delete</button>
+
+
+    <!-- ======================================================
+         DELETE CONFIRMATION MODAL
+         ====================================================== -->
+
+    <div
+        class="modal-overlay"
+        id="confirmModal">
+
+
+        <div class="modal-card">
+
+
+            <p class="modal-icon">
+
+                ⚠️
+
+            </p>
+
+
+            <p
+                class="modal-message"
+                id="confirmMessage">
+
+                Are you sure you want to delete this record?
+
+            </p>
+
+
+            <div class="modal-actions">
+
+
+                <button
+                    class="btn btn-secondary"
+                    id="confirmCancel">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    class="btn btn-danger"
+                    id="confirmOk">
+
+                    Delete
+
+                </button>
+
+
+            </div>
+
+
         </div>
-      </div>
+
+
     </div>
 
-    <!-- TOAST NOTIFICATION -->
-    <div class="toast" id="toast"></div>
 
-    <script type="module" src="/script.js"></script>
-  </body>
+
+    <!-- ======================================================
+         TOAST NOTIFICATION
+         ====================================================== -->
+
+    <div
+        class="toast"
+        id="toast">
+
+    </div>
+
+
+
+    <!-- ======================================================
+         JAVASCRIPT FILE
+         ====================================================== -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
 </html>
-
+```
