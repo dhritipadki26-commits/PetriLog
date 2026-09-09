@@ -1,1 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetriLog – A Digital Culture Observation Tracker</title>
+    <!-- Chart.js for the colony growth graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- NAVIGATION BAR -->
+      <nav class="navbar">
+        <div class="nav-container">
+          <a class="nav-logo" href="#" data-nav="home">
+            <span class="nav-logo-icon">🧫</span>
+            <span class="nav-logo-text">PetriLog</span>
+          </a>
+          <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="#" data-nav="dashboard" class="nav-link active">Dashboard</a></li>
+            <li><a href="#" data-nav="addCulture" class="nav-link">Add Culture</a></li>
+            <li><a href="#" data-nav="observations" class="nav-link">Observations</a></li>
+            <li><a href="#" data-nav="about" class="nav-link">About</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- MAIN CONTENT AREA -->
+      <main class="main-content" id="mainContent">
+        <!-- All views are rendered here by script.js -->
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <p class="footer-text">
+          🧫 PetriLog &mdash; A student observation and documentation tool.
+        </p>
+        <p class="footer-disclaimer">
+          PetriLog is a student observation and documentation tool. It does not provide automated microorganism identification.
+        </p>
+      </footer>
+    </div>
+
+    <!-- CONFIRMATION MODAL -->
+    <div class="modal-overlay" id="confirmModal">
+      <div class="modal-card">
+        <p class="modal-icon">⚠️</p>
+        <p class="modal-message" id="confirmMessage">Are you sure?</p>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" id="confirmCancel">Cancel</button>
+          <button class="btn btn-danger" id="confirmOk">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast"></div>
+
+    <script type="module" src="/script.js"></script>
+  </body>
+</html>
 
